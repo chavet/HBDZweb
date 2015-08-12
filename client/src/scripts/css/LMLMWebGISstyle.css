@@ -1,0 +1,186 @@
+/*导航面板控制 -- start */
+.LMControlPanup {
+  background-image:url("../img/north-mini.png");
+  position:relative;
+  height:30px;
+  width:42px;
+  left:0px;
+  top:0px;
+}
+
+.LMControlPandown {
+  background-image:url("../img/south-mini.png");
+  position:relative;
+  height:30px;
+  width:42px;
+  left:0px;
+  top:-6px;
+}
+.LMControlPanleft {
+  background-image:url("../img/west-mini.png");
+  position:relative;
+  height:42px;
+  width:30px;
+  left:0px;
+  top:-9px;
+}
+.LMControlPanright {
+  background-image:url("../img/east-mini.png");
+  position:relative;
+  height:42px;
+  width:30px;
+  left:12px;
+  top:-9px;
+}
+/* */
+.LMControlZoomin {
+  background-image:url("../img/zoom-plus-mini.png");
+  position:relative;
+  height:20px;
+  width:20px;
+  left:10px;
+  top:10px;
+}
+
+.LMControlZoomout {
+  background-image:url("../img/zoom-minus-mini.png");
+  position:relative;
+  position:relative;
+  height:20px;
+  width:20px;
+  left:10px;
+  top:8px;
+}
+
+.LMControlSlider {
+  background-image:url("../img/slider.png");
+  position:relative;
+  height:10px;
+  width:19px;
+  left:12px;
+}
+
+.LMControlZoombar {
+ /*background-image:url("../img/zoombar.png");
+  position:relative;
+  width:6px;
+  left:30px;*/ 
+  background-image:url("../img/zoombarhover.png");
+  position:relative;
+  width:32px;
+  left:4.5px;
+  top:90px;
+}
+
+
+.LMControlPanup:hover {
+  background-image:url("../img/north-mini.png");
+  position:relative;
+  height:30px;
+  width:42px;
+  left:0px;
+  top:-2px;
+}
+
+.LMControlPandown:hover {
+   background-image:url("../img/south-mini.png");
+  position:relative;
+  height:30px;
+  width:42px;
+  left:0px;
+  top:-4px;
+}
+
+.LMControlPanleft:hover {
+  background-image:url("../img/west-mini.png");
+  position:relative;
+  height:42px;
+  width:30px;
+  left:-2px;
+  top:-9px;
+}
+
+.LMControlPanright:hover {
+  background-image:url("../img/east-mini.png");
+  position:relative;
+  height:42px;
+  width:30px;
+  left:14px;
+  top:-9px;
+}/*
+.LMControlZoomin:hover {
+  background-image:url("../img/zoom-level-buttons.png");
+  height:24px;
+  width:25px;
+}
+
+.LMControlZoombar:hover {
+  background-image:url("../img/zoombarhover.png");
+  position:relative;
+  width:32px;
+  left:4.5px;
+}
+*/
+/**导航面板 - end*/
+
+/**鹰眼 - start*/
+.olControlLTOverviewMapContainer {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      background-color: #FFFFFF;
+    }
+    .olControlLTOverviewMapElement {
+      border-left:1px solid #999999 !important;
+      border-top:1px solid #999999 !important;
+      padding-top: 5px !important;
+      padding-left: 5px !important;
+      /*border:1px solid #000000 !important;
+      padding: 4px 4px 4px 4px !important;
+      padding: 1px 1px 1px 1px;
+      background-color: #ffffff !important;
+      background-color: #ffffff;
+      -moz-border-radius: 1em 0 0 0;
+      border:1px solid #000000;*/
+    }
+    .olControlLTOverviewMapMinimizeButton {
+      right: 0px;
+      bottom: 0px !important;
+      bottom: 0px;
+    }   
+    .olControlLTOverviewMapMaximizeButton {
+      right: 0px;
+      bottom: 0px !important;
+      bottom: 0px;
+    }
+
+    .olControlLTOverviewMapExtentRectangle {
+      overflow: hidden;
+      background-image: url("rect.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: move;
+      border: 2px ridge  blue !important;
+      border: 2px ridge  blue;
+      background:#D8DDE9;/*background:#69F;*/
+      filter:alpha(opacity=50);/* IE */
+      -moz-opacity:0.5;/* Moz + FF */
+      opacity: 0.5; /* 支持CSS3的浏览器（FF 1.5也支持）*/
+    }
+    .olControlLTOverviewMapRectReplacement {
+      overflow: hidden;
+      cursor: move;
+      background-image: url("overview_replacement.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .olMap {
+      z-index: 0;
+      padding: 0 !important;
+      margin: 0 !important;
+      cursor: default;
+      border:1px solid #999999;
+    }
+    /**鹰眼 - end*/
+	
+
