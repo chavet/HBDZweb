@@ -63,7 +63,7 @@
   </gml:featureMember>
   <gml:featureMember>
     <ogr:station_gml fid="station_gml.5">
-      <ogr:geometryProperty><gml:Point srsName="EPSG:4326"><gml:coordinates>38.02,114.55</gml:coordinates></gml:Point></ogr:geometryProperty>
+      <ogr:geometryProperty><gml:Point srsName="EPSG:4326"><gml:coordinates>114.55,38.02</gml:coordinates></gml:Point></ogr:geometryProperty>
       <ogr:id>13148</ogr:id>
       <ogr:name>石家庄小马村观测站</ogr:name>
       <ogr:latitude>38.00</ogr:latitude>

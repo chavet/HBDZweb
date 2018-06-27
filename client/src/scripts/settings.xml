@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<stations>
+		<station code="13109" name="深州冀23井" latitude="38.07" longitude="115.56" heignt="30">
+			<point code="1" name="数字式水位仪" instrument="SWY-1" ip="10.13.24.200" username="administrator" password="01234567"/>
+			<point code="3" name="气象三要素观测仪" instrument="WYY-1" ip="10.13.24.201" username="administrator" password="01234567"/>
+		</station>
+		<station code="13103" name="河间冀17井" latitude="38.4" longitude="116.2" heignt="14">
+			<point code="1" name="数字式水位仪" instrument="SWY-1" ip="10.13.193.26" username="administrator" password="01234567"/>
+		</station>
+		<station code="13104" name="沧县冀18井" latitude="38.33" longitude="116.87" heignt="7">
+			<point code="1" name="地下水数据监测系统（水位）" instrument="ZKGD3000" ip="10.13.25.206" username="administrator" password="01234567"/>
+			<point code="2" name="地下水数据监测系统（水温）" instrument="ZKGD3000" ip="10.13.25.207" username="administrator" password="01234567"/>
+			<point code="3" name="气象三要素观测仪" instrument="WYY-1" ip="10.13.25.205" username="administrator" password="01234567"/>
+		</station>
+		<station code="13105" name="黄骅冀19井" latitude="38.27" longitude="117.78" heignt="2">
+			<point code="1" name="数字式水位仪" instrument="SWY-1" ip="10.13.193.58" username="administrator" password="01234567"/>
+		</station>
+		<station code="13106" name="无极冀20井" latitude="38.33" longitude="114.97" heignt="45">
+			<point code="1" name="地下水数据监测系统（水位）" instrument="ZKGD3000" ip="10.13.24.215" username="administrator" password="01234567"/>
+			<point code="2" name="地下水数据监测系统（水温）" instrument="ZKGD3000" ip="10.13.24.216" username="administrator" password="01234567"/>
+			<point code="3" name="气象三要素观测仪" instrument="WYY-1" ip="10.13.25.219" username="administrator" password="01234567"/>
+		</station>
+		<station code="13148" name="石家庄小马村观测站" latitude="38.02" longitude="114.55" heignt="40">
+			<point code="1" name="数字式水位仪" instrument="SWY-1" ip="10.13.193.138" username="administrator" password="01234567"/>
+		</station>
+		<station code="13024" name="黄壁庄" latitude="38.25" longitude="114.31" heignt="120">
+			<point code="1" name="质子矢量磁力仪" instrument="FHD-2B" ip="10.13.203.18" username="111111" password="111111"/>
+		</station>
+		<station code="13146" name="新乐" latitude="38.21" longitude="114.65" heignt="64">
+			<point code="1" name="质子矢量磁力仪" instrument="FHD-2B" ip="10.13.176.181" username="111111" password="111111"/>
+		</station>
+	</stations>
+	<items>
+		<item code="9110"	name="气温" min="-50.00" max="50.00"></item>
+		<item code="9130"	name="气压" min="0.000" max="30.000"></item>
+		<item code="9140"	name="降雨量" min="0.000" max="30.000"></item>
+		<item code="4111"	name="水位" min="" max=""></item>
+		<item code="4112"	name="水位" min="" max=""></item>
+		<item code="4312"	name="水温" min="" max=""></item>
+		<item code="4331"	name="二氧化碳" min="" max=""></item>
+		<item code="3124"	name="地磁H分量" min="" max=""></item>
+		<item code="3125"	name="地磁D分量" min="" max=""></item>
+		<item code="3127"	name="地磁总场" min="" max=""></item>
+	</items>
+</settings>

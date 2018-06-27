@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<users> 
+	<user> 
+		<id>22240319830000</id> 
+		<name>Shirdrn</name> 
+		<age>26</age> 
+		<gender>男</gender> 
+		<email>shirdrn@hotmail.com</email> 
+		<phone>13843140000</phone> 
+	</user> 
+	<user> 
+		<id>22040319860001</id> 
+		<name>Linda</name> 
+		<age>23</age> 
+		<gender>女</gender> 
+		<email>linda@hotmail.com</email> 
+		<phone>13843140002</phone> 
+	</user> 
+</users> 

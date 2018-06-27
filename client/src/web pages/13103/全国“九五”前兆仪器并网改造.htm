@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0020)http://10.13.193.26/ -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Language" content="zh-cn"> 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+<TITLE>全国“九五”前兆仪器并网改造</TITLE> 
+<STYLE type="text/css">
+a {text-decoration: none}
+</STYLE>
+ 
+<SCRIPT type="text/javascript">
+// 生成一个xmlHttp对象
+var arr = new Array();
+
+if(typeof String.prototype.trim != 'function') {
+	String.prototype.trim=function() {
+		return this.replace(/^\s+|\s+$/g, '');
+}
+}
+
+//create link
+
+// project.document.body.style.fontSize='18px';
+
+function init() {
+    var xmlHttp;  // 为了检测浏览器是否支持ajax
+    try {// Firefox, Opera 8.0+, Safari
+        xmlHttp = new XMLHttpRequest();
+    }
+    catch (e) {// Internet Explorer
+        try {
+            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch (e) {
+            try {
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e) {
+                alert("您的浏览器不支持AJAX！");
+                return false;
+            }
+        }
+    }
+    //  if(staxmlHttp.readyState==4) 确保了后台异步发送已完成,并收到结果
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState==4) {// cgi的所有输出(即print)都会显示在xmlHttp.responseText; 	
+            //document.idcode.idcodeselect.options.lenght=0;
+            
+            arr = xmlHttp.responseText.split("===");
+            if (arr.length>1) {
+             //var swcode = document.getElementById("idswcode");
+            for (i=0; i<arr.length-1; i++) {
+            /*var item=document.createElement("option");
+            item.text=arr[i].slice(0,12);
+            swcode.add(item); ---> */
+            var str = arr[i].toString().split(' ');
+            //alert(str.length);
+            ininame = str[1].trim().slice(0,12); // str.slice(0,12);
+            //alert(arr[i].slice(0,12));
+            var address="stationlist.py?idcode=" + ininame
+            var tempObj = document.createElement('a');
+            tempObj.setAttribute('href', address);
+            tempObj.appendChild(document.createTextNode(str[0] + ininame+"\t"));
+            child = document.getElementById("dswcode");
+            child.appendChild(tempObj);
+            }
+        }
+        else
+        {
+        var tempObj = document.createElement('p');
+        tempObj.innerHTML = "<font color='gray'><strong><br><br><br>未找到任何配置!!!</strong></font>";
+        child = document.getElementById("dswcode");
+        child.appendChild(tempObj);
+        }
+    }
+}
+    var url = "getshiwustation.py?sid=" + Math.random();
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send(null);
+
+}</SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 10.00.9200.17457"></HEAD> 
+<BODY topmargin="0" bottommargin="0" bgcolor="#cccccc" onload="init()">
+<DIV align="center">
+<TABLE width="1012" id="table1" bgcolor="#ffffff" border="0" cellspacing="0" 
+cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD><IMG width="1012" height="117" src="全国“九五”前兆仪器并网改造_files/banner.jpg" 
+      border="0"></TD></TR>
+  <TR>
+    <TD height="31" bgcolor="#ffffff">
+      <TABLE width="1012" height="39" id="table2" bordercolorlight="#ffffff" 
+      bordercolordark="#ffffff" bgcolor="#ffffff" border="0" cellspacing="3" 
+      cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD width="144" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" 
+            href="http://10.13.193.26/index.html"><FONT color="#ffffff">首<SPAN 
+            lang="en-us">&nbsp;&nbsp;&nbsp;
+            					</SPAN>页</FONT></A></B></FONT></P></TD>
+          <TD width="144" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" href="http://10.13.193.26/design.html"><FONT 
+            color="#ffffff">设计方案</FONT></A></B></FONT></P></TD>
+          <TD width="144" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" href="http://10.13.193.26/jwequipmentparam.html"><FONT 
+            color="#ffffff">九五仪器配置</FONT></A></B></FONT></P></TD>
+          <TD width="144" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" href="http://10.13.193.26/parammatch.html"><FONT 
+            color="#ffffff">九五—十五匹配</FONT></A></B></FONT></P></TD>
+          <TD width="144" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" href="http://10.13.193.26/systemparam.html"><FONT 
+            color="#ffffff">系统参数设置</FONT></A></B></FONT></P></TD>
+          <TD width="169" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" href="http://10.13.193.26/manageparam.html"><FONT 
+            color="#ffffff">下位机管理及监控</FONT></A></B></FONT></P></TD>
+          <TD width="144" align="center" bgcolor="#800000">
+            <P style="line-height: 150%;"><FONT color="#ffffff" size="4"><B><A 
+            style="text-decoration: none;" href="http://10.13.193.26/datadownload.html"><FONT 
+            color="#ffffff">数据下载</FONT></A></B></FONT></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD width="1008" height="100%" align="center" bordercolorlight="#cd3f3e" 
+    bordercolordark="#008000" style="-ms-word-wrap: break-word;"><!--- <p class="MsoNormal" align="left">　</p>--->
+      			  
+      <P align="left" class="MsoNormal"><B><IMG width="998" height="4" src="全国“九五”前兆仪器并网改造_files/line.gif" 
+      border="0">			 </B>
+      <P align="left" class="MsoNormal"><B><B><SPAN style="font-family: 仿宋_GB2312; font-size: 12pt;">一、项目简介</SPAN></B></B></P><B><!--- 插入文件实验 --->
+      			 <IFRAME width="100%" height="288" id="project" src="res://ieframe.dll/http_404.htm" 
+      frameborder="0" scrolling="no" style="-ms-word-wrap: break-word;" onload="project.document.body.style.fontSize='13px';"></IFRAME> 
+<SCRIPT>
+document.getElementById("project").src = "project.txt";
+</SCRIPT>
+      			 <!--- <p class="MsoNormal" align="left"><b>
+			<span style="font-family: 仿宋_GB2312">项目名称：</span></b><span style="font-family: 仿宋_GB2312">全国“九五”前兆仪器并网改造</span></p>
+			<p class="MsoNormal" align="left">
+			<span style="font-family: 仿宋_GB2312"><b>项目指挥：</b>中国地震台网中心</span></p>
+			<p class="MsoNormal" align="left">
+			<span style="font-family: 仿宋_GB2312"><b>技术负责：</b>中国地震局地壳应力研究所</span></p>
+			<p class="MsoNormal" align="left">
+			<span style="font-family: 仿宋_GB2312"><b>实施单位：</b>各省（市、自治区）地震局</span></p>
+			<div v:shape="_x0000_s1026" class="O" style="mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+				<p class="MsoNormal" style="text-indent: -52.7pt; margin-left: 52.7pt" align="left">
+				<b><span style="font-family: 仿宋_GB2312">建设内容：</span></b><span style="font-family: 仿宋_GB2312">任务主要内容是：2010—2011年底，逐步完成全国“九五”并网改造，以及其台站通讯方式的升级（网络改造），</span></p>
+				<p class="MsoNormal" align="left">
+				<span style="font-family: 仿宋_GB2312">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				实现“九五”前兆台网无缝并入到“十五”地震前兆台网管理系统。</span></div> --->						 <IMG width="998" height="4" 
+      src="全国“九五”前兆仪器并网改造_files/line.gif" border="0">			 
+      <P align="left" class="MsoNormal"><B><SPAN style="font-family: 仿宋_GB2312; font-size: 12pt;">二、台站介绍</SPAN></B></P><p:colorscheme 
+      colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"><IFRAME 
+      width="100%" height="288" id="station" src="res://ieframe.dll/http_404.htm" 
+      frameborder="0" scrolling="no" onload="station.document.body.style.fontSize='13px';"></IFRAME> 
+<SCRIPT>
+document.getElementById("station").src = "station.txt";
+</SCRIPT>
+      			 <!--- <div v:shape="_x0000_s1026" class="O">
+				<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+					<p class="MsoNormal" align="left" style="line-height: 200%">
+					<span style="font-family:Garamond;font-size:156%;
+text-shadow:auto"><span style="mso-special-format:bullet;color:#FFCC00;
+mso-color-index:6;position:absolute;left:-3.35%;top:.39em;font-family:Wingdings;
+font-size:70%">n</span></span><span style="font-family: 仿宋_GB2312"><span lang="en-us">&nbsp;&nbsp;&nbsp;
+					</span>
+					在充分保留原有测项（原有传感器）的前提下，完成全国前兆台网中正常运行的“九五”仪器及其前兆观测系统改造，使其接入到中国地震前兆台网数据管理系统，实现“九五”前兆台网并入到“十五”前兆台网。 
+					</span></div>
+				<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+					<p class="MsoNormal" align="left" style="line-height: 200%">
+					<span style="font-family: 仿宋_GB2312" lang="en-us">&nbsp;&nbsp;&nbsp;
+					</span><span style="font-family: 仿宋_GB2312">
+					验收方式：利用中国地震前兆台网数据管理系统对并网仪器进行数据采集、分析，计算其数据完整率、连续率；分析其数据可靠性。</span></p>
+					<p class="MsoNormal" align="left">
+					<!--- <span style="font-family: 仿宋_GB2312; font-size: 14.0pt"><b>
+					三、第一期任务进度安排</b></span></p>
+					<p:colorscheme
+ colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"/>
+
+					<div v:shape="_x0000_s1026" class="O">
+						<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+							<p class="MsoNormal" align="left" style="line-height: 200%">
+							<span style="font-family: 仿宋_GB2312">&nbsp;&nbsp;&nbsp; 
+							方案论证与修改：2010年11月； </span></p>
+							<p:colorscheme
+ colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"/>
+							<div v:shape="_x0000_s1026" class="O">
+								<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+									<p class="MsoNormal" align="left" style="line-height: 200%">
+									<span style="font-family: 仿宋_GB2312">&nbsp;&nbsp;&nbsp; 
+									DSC-1A型数据采集器的量产：2010年11月~2011年3月；</span></div>
+								<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+									<p:colorscheme
+ colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"/>
+									<div v:shape="_x0000_s1026" class="O">
+										<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+											<p class="MsoNormal" align="left" style="line-height: 200%">
+											<span style="font-family: 仿宋_GB2312">&nbsp;&nbsp;&nbsp; 
+											以北京局为试点，进行设备调试、安装：时间段：2011年2月；</span></div>
+										<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+											<p:colorscheme
+ colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"/>
+											<div v:shape="_x0000_s1026" class="O">
+												<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+													<p class="MsoNormal" align="left" style="line-height: 200%">
+													<span style="font-family: 仿宋_GB2312">&nbsp;&nbsp;&nbsp; 
+													其它省市的设备调试与安装：2011年3月~2011年6月； 
+													</span></p>
+													<p:colorscheme
+ colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"/>
+													<div v:shape="_x0000_s1026" class="O">
+														<div style="mso-line-spacing:&quot;120 20 0&quot;;mso-margin-left-alt:216;mso-char-wrap:
+1;mso-kinsoku-overflow:1">
+															<p class="MsoNormal" align="left" style="line-height: 200%">
+															<span style="font-family: 仿宋_GB2312">&nbsp;&nbsp;&nbsp; 
+															第一阶段验收：2011年8月。</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>--->
+      						 
+      <DIV id="dswcode"><IMG width="998" height="4" src="全国“九五”前兆仪器并网改造_files/line.gif" 
+      border="0">			 
+      <P align="left" class="MsoNormal"><B><SPAN style="font-family: 仿宋_GB2312; font-size: 14pt;">三、已配置的十五仪器:</SPAN></B></P><p:colorscheme 
+      colors="#003399,#ffffff,#000514,#e5e5ff,#0099cc,#a886e0,#ffcc00,#ffffcc"></p:colorscheme></DIV>　</p:colorscheme></B></TD></TR>
+  <TR>
+    <TD>　</TD></TR>
+  <TR>
+    <TD bgcolor="#00ffff">
+      <P align="center" style="line-height: 150%;"><FONT size="2">
+      			请用IE6.0以上浏览器，1024*768分辨率<BR>			北京海淀区西三旗 中国地震局地壳所 
+      邮编：100085<BR>电话：010-62958122&nbsp;&nbsp; </FONT>			 <SPAN lang="en-us" 
+      lang="en-us" xml:lang="en-us"><A href="mailto:E-Mail:bjdqzg@126.com"><FONT 
+      size="2">
+			E-Mail:hua98611@163.com</FONT></A></SPAN></P></TD></TR></TBODY></TABLE></DIV></BODY></HTML>

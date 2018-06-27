@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>河北地震监测</title>
+<title>石家庄前兆分中心</title>
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta name=viewport content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 </script>
@@ -62,7 +62,7 @@ body{
 }
 .left-info{
 	float: left;
-	width: 80px;
+	width: 55px;
     word-break: break-word;
     margin: 14px 0 0 10px;
 }
@@ -89,15 +89,16 @@ body{
 .bottom-info .bottom-info-curTime{
 	margin: 0
 }
-
 </style>
+
 </head>
 <body >
 <div id="map" style="position: absolute; top: 1px; left: 1px; bottom: 1px; right: 1px;">
     <div id="toolTips" ></div>	
 </div>
 <div id="chart-wrap" class="chart-wrap">
-	
+	<div id="chart-sysconfig" class="chart-sysconfig" >
+	</div>
 </div>
 
 
@@ -111,32 +112,122 @@ body{
 <!-- <script type="text/javascript" src="scripts/tablecloth.js"></script> -->
 <script>
 $(document).ready(function(){
-	var chartContainer = $('#chart-wrap'),
-		chartAry = ["13109-1-4112","13109-1-4312","13109-1-9130","13109-3-9110","13109-3-9130","13109-3-9140","13103-1-4112","13103-1-4312","13103-1-9130","13104-1-4112","13104-2-4312","13104-3-9110","13104-3-9130","13104-3-9140","13105-1-4112","13105-1-4312","13105-1-9130","13106-1-4112","13106-2-4312","13106-3-9110","13106-3-9130","13106-3-9140","13148-1-4112","13148-1-4312","13148-1-9130","13024-1-3127","13024-1-3124","13024-1-3125","13146-1-3127","13146-1-3124","13146-1-3125"];
+	window.isWarn = false;
+	window.warnStations = [];
+	SetAudioWarn();
 
-	init();
+	var chartContainer = $('#chart-wrap'),
+		sysconfigContainer = $('#chart-sysconfig'),
+		chartAry = ["13103-1-4112","13103-1-4312","13103-1-9130","13105-1-4112","13105-1-4312","13105-1-9130","13109-1-4112","13109-1-4312","13109-1-9130","13109-3-9110","13109-3-9130","13109-3-9140","13148-1-4112","13148-1-4312","13148-1-9130","13104-1-4112","13104-2-4312","13104-3-9110","13104-3-9130","13104-3-9140","13106-1-4112","13106-2-4312","13106-3-9110","13106-3-9130","13106-3-9140","13024-1-3127","13024-1-3124","13024-1-3125","13146-1-3127","13146-1-3124","13146-1-3125"];
+
+	initMap();
+
+	var settingsUrl = '/stationData/settings.json';
+	(function(settingsUrl){
+		$.get(settingsUrl, function(settingData){
+			window.settingData = settingData;
+			var enableWarn = settingData.sysconfig.enableWarn;
+			var autoFresh = settingData.sysconfig.autoFresh;
+			var tHtml = '<a style="padding-left: 10px;" href="settings.html">配置页面</a>'+
+						'<label style="display: inline-block;" ></label>'+
+						'<label style="float:right; padding-right: 10px;" >自动刷新</label>'+
+						'<input id="is_autoFresh" style="float:right;" onclick="enableAutoFresh(this)" type="checkbox" '+ (autoFresh=='true' ? 'checked="checked"':'') +'>'+
+						'<label style="float:right; padding-right: 10px;" >显示台站预警结果</label>'+
+						'<input id="show_station_warn" style="float:right;" onclick="showStationWarn(this)" type="checkbox">'+
+						'<label style="float:right; padding-right: 10px;" >报警提示音</label>'+
+						'<input id="is_audio_warn" style="float:right;" onclick="enableAudioWarn(this)" type="checkbox" '+ (enableWarn=='true' ? 'checked="checked"':'') +'>'+
+						'<audio id="audio_warn" loop="loop" >'+
+						  	'<source src="scripts/sound/warn.mp3" type="audio/mpeg">'+
+						  	'<embed src="scripts/sound/warn.mp3">'+
+						'</audio>';
+			sysconfigContainer.append(tHtml);
+			if (autoFresh=='true') {
+				setTimeout("self.location.reload();",1000*Number(window.settingData.sysconfig.refresh));
+			};
+		});
+	})(settingsUrl);
 
 	//render chart
 	//prepare chart html
 	for(var i=0,l=chartAry.length; i<l; i++){
 		var item = chartAry[i],
-			tHtml = '<div class="chart-item '+item+'">'+
-						'<div class="left-info"></div>'+
-						'<div class="right-info"></div>'+
-						'<div class="chart"></div>'+
-						'<div class="bottom-info">'+
-							'<span class="bottom-info-name"></span>'+
-							'<span class="bottom-text">at</span>'+
-							'<span class="bottom-info-curDate"></span>'+
-							'<span class="bottom-info-curTime"></span>'+
-							'<div class="bottom-info-desc"></div>'+
-						'</div>'+
-					'</div>',
-			url = '/stationData/'+item+'.json';
+			url = '/stationData/'+item+'.json',
+			tHtml = '';
+		if (i==0) {
+			tHtml +='<div id="chart-sysconfig" class="chart-sysconfig" >'+
+						'<label style="padding-left: 10px; font-size:25px;">流体协转收数：</label>'+
+					'</div>';
+		}else if (i==15) {
+			tHtml +='<div id="chart-sysconfig" class="chart-sysconfig" >'+
+						'<label style="padding-left: 10px; font-size:25px;">流体实时收数：</label>'+
+					'</div>';
+		}else if (i==25) {
+			tHtml +='<div id="chart-sysconfig" class="chart-sysconfig" >'+
+						'<label style="padding-left: 10px; font-size:25px;">地磁实时收数：</label>'+
+					'</div>';
+		};
+		tHtml +='<div class="chart-item '+item+'">'+
+					'<div class="left-info"></div>'+
+					'<div class="right-info"></div>'+
+					'<div class="chart"></div>'+
+					'<div class="bottom-info">'+
+						'<span class="bottom-info-name"></span>'+
+						'<span class="bottom-text">at</span>'+
+						'<span class="bottom-info-curDate"></span>'+
+						'<span class="bottom-info-curTime"></span>'+
+						'<div class="bottom-info-desc"></div>'+
+					'</div>'+
+				'</div>';
+
 		chartContainer.append(tHtml);
 
 		(function(url, item){
 			$.get(url, function(chartData){
+
+				//预警值
+				var stdItems = window.settingData.items,
+					checkItem = chartData.Name.split("/")[2],
+					chartColor = '#0000FF',
+					warnStation = false,
+					checkMin,checkMax;
+
+				for (var i = 0; i < stdItems.length; i++) {
+					if( stdItems[i].code == checkItem){
+						checkMin = stdItems[i].min;
+						checkMax = stdItems[i].max;
+					}
+				};
+
+				for(var i=0,l=chartData.Data.length; i<l; i++){
+                	if(chartData.Data[i] == -9999){
+                  		chartData.Data[i] = null;
+                	}else{
+                		if (chartData.Data[i]<checkMin || chartData.Data[i]>checkMax) {
+                			window.isWarn = true;
+                			warnStation = true;
+                			chartColor = '#FF0000';
+                		};
+                	}
+              	}
+              	if(warnStation)
+              	{
+              		var stationID = item.split("-")[0];
+      		        if (window.warnStations.length==0){
+        				window.warnStations.push(stationID);
+        			}else{
+        				if ($.inArray(stationID, window.warnStations)==-1) {
+        					window.warnStations.push(stationID);
+        				};
+							
+
+        	// 			var index = 0;
+         //    			for(var index in window.warnStations) {
+					    //     if(stationID==window.warnStations[index])
+					    //         continue;
+					    // }
+				    }
+              	}
+
 				var curChart = $('.'+item), 
 					connectText = '';
 				curChart.find('.chart').highcharts({
@@ -182,7 +273,7 @@ $(document).ready(function(){
 			        },
 			        series: [{
 			            name: 'Val',
-			            color: '#0000FF',
+			            color: chartColor,
 			            marker: {
 			                enabled: false,
 			                symbol: 'circle'
@@ -193,7 +284,7 @@ $(document).ready(function(){
 
 				//update desc
 				curChart.find('.left-info').html(chartData.CurVal);
-				connectText = chartData.Connect ? '已连接' : '未连接';
+				connectText = chartData.Connect ? '已联通' : '未联通';
 				connectCls = chartData.Connect ? 'connected': 'disconnected';
 				curChart.find('.right-info').addClass(connectCls);
 				curChart.find('.right-info').html(connectText);
@@ -201,6 +292,7 @@ $(document).ready(function(){
 				curChart.find('.bottom-info-curDate').html(chartData.CurDate);
 				curChart.find('.bottom-info-curTime').html(chartData.CurTime);
 				curChart.find('.bottom-info-desc').html(chartData.Description);
+				//resetLayerSLD();				
 			});
 		})(url, item);
 	}
@@ -211,6 +303,7 @@ $(document).ready(function(){
 	* @ary an array to be highlighted, like ["13109-1-4112", "13103-1-4112"]
 	*
 	**/
+
 	window.highlight = function(ary){
 		$.each(ary, function(index, val){
 			$('.'+val).addClass('highlight');
@@ -230,7 +323,95 @@ $(document).ready(function(){
 	setTimeout(function(){
 		resize();
 	}, 500);
+
 });
+
+function enableAudioWarn(AudioWarn){
+	if(AudioWarn.checked){
+    	window.settingData.sysconfig.enableWarn = true;
+	}else{
+    	window.settingData.sysconfig.enableWarn = false;
+	}
+	SetAudioWarn();
+
+	$.ajax({
+	    type: 'post',
+	    url: '/api/updateSettings/',
+	    data: window.settingData,
+	    success: function(){
+	    },
+	    error: function(){
+	      alert('请求失败')
+	    }
+	})
+}
+
+function enableAutoFresh(AutoFresh){
+	if(AutoFresh.checked){
+    	window.settingData.sysconfig.autoFresh = true;
+	}else{
+    	window.settingData.sysconfig.autoFresh = false;
+	}
+
+	$.ajax({
+	    type: 'post',
+	    url: '/api/updateSettings/',
+	    data: window.settingData,
+	    success: function(){
+	      self.location.reload();
+	    },
+	    error: function(){
+	      alert('请求失败')
+	    }
+	})
+}
+
+function showStationWarn(StationWarn){
+	if(StationWarn.checked){
+		setStationStyle(window.warnStations);
+	}else{
+    	clearStationStyle();
+	}
+}
+
+function SetAudioWarn(){
+	var audio = document.getElementById( "audio_warn" );
+	if( audio!==null){             
+		if(window.settingData.sysconfig.enableWarn&&window.isWarn){
+			if(audio.paused) {
+				audio.play();
+			}
+			// var borswer = window.navigator.userAgent.toLowerCase();
+			// if ( borswer.indexOf( "ie" ) >= 0 )
+			// {
+			// 	//IE内核浏览器
+			// 	var strEmbed = '<embed name="embedPlay" src="notice.wav" autostart="true" hidden="true" loop="false"></embed>';
+			// 	if ( $( "body" ).find( "embed" ).length <= 0 )
+			// 		$( "body" ).append( strEmbed );
+			// 	var embed = document.embedPlay;
+
+			// 	//浏览器不支持 audion，则使用 embed 播放
+			// 	embed.volume = 100;
+			// 	embed.play();
+			// } else
+			// {
+			// 	//非IE内核浏览器
+			// 	var strAudio = "<audio id='audioPlay' src='notice.wav' hidden='true'>";
+			// 	if ( $( "body" ).find( "audio" ).length <= 0 )
+			// 		$( "body" ).append( strAudio );
+			// 	var audio = document.getElementById( "audioPlay" );
+			// 	//浏览器支持 audion
+			// 	audio.play();
+			// }
+		}
+		else{
+			if(!audio.paused) {
+            	audio.pause();
+            } 
+		}
+	}
+}
+
 </script>
 </body>
 

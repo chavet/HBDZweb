@@ -9,7 +9,8 @@ var path = require('path'),
 var app = express(),
   router = express.Router(),
   login = require('./app/login'),
-  resource = require('./app/resource');
+  resource = require('./app/resource'),
+  api = require('./app/api');
 
 //all environments
 app.set('port', process.env.PORT || 8001);
@@ -32,6 +33,7 @@ router.use(function(req, res, next) {
   next();
 });
 
+app.use(api);
 // app.use(resource);
 // app.use(login);
 //app.use(crawler.router);

@@ -512,9 +512,7 @@ function onPopupClose() {
 
 
 //=====================================================================================================
-function init() {
-
-
+function initMap() {
     //创建地图
     map = new LMWebGIS.Map('map', {
         allOverlays: true,
@@ -570,8 +568,6 @@ function init() {
         position: new LMWebGIS.Pixel(2, 15)
     }));
     map.addControl(new LMWebGIS.Control.Navigation());
-
-
 }
 
 
@@ -597,6 +593,56 @@ function createLayers(layerData) {
     return vecLayers;
 } */
 
+//重新设置图层样式
+function resetLayerSLD() {
+    var SLDurl;
+    if (window.isWarn) {
+        SLDurl = "SLD/Map_warn.sld.xml";
+    }else{
+        SLDurl = "SLD/Map.sld.xml";
+    }
+    LMWebGIS.Request.GET({
+        url: SLDurl,
+        success:function (req) {
+            analyzeSLD(req.responseText);
+            map.zoomToExtent(new LMWebGIS.Bounds(112.06,35.20,120.46,43.45));
+        }
+    });
+}
+
+//设置台站样式
+function setStationStyle(warnStations) {
+    for (var k = 0, n = warnStations.length; k < n; k++) {
+        var itemId = warnStations[k];
+        for (var i = 0, l =map.layers.length; i < l; i++) {
+            if (map.layers[i].name != "地震前兆台站") {
+                continue;
+            };
+            for (var j = 0, m = map.layers[i].features.length; j < m; j++) {
+                var tempFeature = map.layers[i].features[j];
+                if(tempFeature.attributes.id != itemId){
+                    continue;
+                }
+                tempFeature.renderIntent = "select";
+                break;
+            };
+        };
+    };
+    map.zoomTo(3);
+}
+
+function clearStationStyle() {
+    for (var i = 0, l =map.layers.length; i < l; i++) {
+        if (map.layers[i].name != "地震前兆台站") {
+            continue;
+        };
+        for (var j = 0, m = map.layers[i].features.length; j < m; j++) {
+            map.layers[i].features[j].renderIntent = "default";
+        };
+    };
+    map.zoomTo(2);
+}
+
 //设置图层风格
 function setLayerStyles() {
     //为每一个图层设置默认的风格
@@ -617,7 +663,6 @@ function setLayerStyles() {
             }
         }
     }
-
 }
 //解析样式
 function analyzeSLD(sldText) {
